@@ -1,0 +1,108 @@
+O diagrama representa um banco de dados relacional que organiza informações sobre armas, builds e equipamentos, provavelmente relacionado a um sistema de jogo. Aqui está uma descrição das entidades e seus relacionamentos:
+
+1. Tabela: Armas
+
+id_arma: Identificador único da arma.
+
+nome_arma: Nome da arma.
+
+dano_arma: Dano que a arma causa.
+
+tipo_arma: Tipo ou categoria da arma.
+
+danoCritico_arma: Dano crítico da arma.
+
+taxaDisparo_arma: Taxa de disparo da arma.
+
+alcance_arma: Alcance efetivo da arma.
+
+
+2. Tabela: Build
+
+id_build: Identificador único da build.
+
+nome_build: Nome da build.
+
+descricao_build: Descrição da build.
+
+data_criacao: Data de criação da build.
+
+
+3. Tabela: Equipamentos
+
+id_equipamento: Identificador único do equipamento.
+
+nome_equipamento: Nome do equipamento.
+
+categoria_equipamento: Categoria ou tipo do equipamento.
+
+atributoPrim_equipamento: Atributo primário do equipamento.
+
+valorAtri_equipamento: Valor do atributo primário do equipamento.
+
+
+4. Relacionamentos
+
+Compoem (1,n): Relaciona a tabela de Armas com a tabela Build. Uma arma pode compor uma ou mais builds, e uma build pode ter uma ou mais armas.
+
+Possue (1,n): Relaciona a tabela Build com a tabela Equipamentos. Uma build pode possuir um ou mais equipamentos, e um equipamento pode estar associado a uma ou mais builds.
+
+
+Entendi! Vamos criar as tabelas primeiro. Aqui estão os comandos SQL para criar as tabelas conforme a descrição fornecida:
+
+1. **Tabela Armas:**
+    ```sql
+    CREATE TABLE Armas (
+        id_arma INT PRIMARY KEY AUTO_INCREMENT,
+        nome_arma VARCHAR(255) NOT NULL,
+        dano_arma INT NOT NULL,
+        tipo_arma VARCHAR(255) NOT NULL,
+        danoCritico_arma INT NOT NULL,
+        taxaDisparo_arma FLOAT NOT NULL,
+        alcance_arma INT NOT NULL
+    );
+    ```
+
+2. **Tabela Build:**
+    ```sql
+    CREATE TABLE Build (
+        id_build INT PRIMARY KEY AUTO_INCREMENT,
+        nome_build VARCHAR(255) NOT NULL,
+        descricao_build TEXT,
+        data_criacao DATE NOT NULL
+    );
+    ```
+
+3. **Tabela Equipamentos:**
+    ```sql
+    CREATE TABLE Equipamentos (
+        id_equipamento INT PRIMARY KEY AUTO_INCREMENT,
+        nome_equipamento VARCHAR(255) NOT NULL,
+        categoria_equipamento VARCHAR(255) NOT NULL,
+        atributoPrim_equipamento VARCHAR(255) NOT NULL,
+        valorAtri_equipamento INT NOT NULL
+    );
+    ```
+
+4. **Tabela Compoem (Relacionamento entre Armas e Build):**
+    ```sql
+    CREATE TABLE Compoem (
+        id_build INT,
+        id_arma INT,
+        PRIMARY KEY (id_build, id_arma),
+        FOREIGN KEY (id_build) REFERENCES Build(id_build),
+        FOREIGN KEY (id_arma) REFERENCES Armas(id_arma)
+    );
+    ```
+
+5. **Tabela Possue (Relacionamento entre Build e Equipamentos):**
+    ```sql
+    CREATE TABLE Possue (
+        id_build INT,
+        id_equipamento INT,
+        PRIMARY KEY (id_build, id_equipamento),
+        FOREIGN KEY (id_build) REFERENCES Build(id_build),
+        FOREIGN KEY (id_equipamento) REFERENCES Equipamentos(id_equipamento)
+    );
+    ```
+

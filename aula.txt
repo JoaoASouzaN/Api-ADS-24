@@ -1,0 +1,59 @@
+Criar projeto npm init -y
+
+instalar o typescript npm i typescript
+
+criar o arquivo index.ts -> touch no gitbash
+
+escrever console.log("hello, word")
+
+executar o arquivo criando um arquivo javaScript por meio do comando tsc index.ts 
+e executar o arquivo criado node index.js
+
+se não funcionar uma alternativa é utilizar o comando npx ts-node index.ts,
+este ao criar e salvar um arquivo javaScript,
+ele o cria na memoria RAM e executa, consumindo mais memoria 
+
+ao encontrar o erro:
+
+"$ npm i typescript
+
+added 1 package, and audited 2 packages in 2s
+
+found 0 vulnerabilities
+npm ERR! errno -4058
+npm ERR! enoent ENOENT: no such file or directory, lstat 'C:\Users\1-23-14523\AppData\Roaming\npm'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent
+
+npm ERR! A complete log of this run can be found in: C:\Users\1-23-14523\AppData\Local\npm-cache\_logs\2024-08-15T23_14_43_129Z-debug-0.log"
+
+basta instalar globalmente com o comando npm init -g
+
+as vezes ao dar algum erro onde não se tem explicacao, basta reiniciar o VScode
+
+vamos fazer uma pequena alteração no arquivo package.json, iremos adicionar a seginte linha de comando
+no bloco scripts a baixo do test, lembrar de colocar a virgula
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./build/index.js"
+  },
+
+  no computador da Faminas é necessario fazer uma alteração nesse codigo devido ao problema que ocorreu anteriormente
+  por isso a linha passa a ser "start": "tsc && node ./src/index.ts"
+
+usando o comando npx tsc --init, podemos criar os arquivos de configuração chamado tsconfig.json
+
+no arquivo tsconfig.json, vamos alterar as chaves, target para ln14 -> "es6", ln 28 -> "module": "commonjs,ln 29 ->rootDir para "./src", ln 60 -> outDir para "./build"
+lembrando de retirar as //
+descomentar ln 56 -> sourceMap, ln 61 -> removeComments e ln 86 -> noImplicitAny
+
+criar as pastas src e build
+adicionar o script vamos fazer uma pequena alteração no arquivo package.json, iremos adicionar a seginte linha de comando
+no bloco scripts a baixo do test, lembrar de colocar a virgula
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./build/index.js"
+  },
+
+  no computador da Faminas é necessario fazer uma alteração nesse codigo devido ao problema que ocorreu anteriormente
+  por isso a linha passa a ser "start": "tsc && node ./src/index.ts" no package.json caso ainda n tenha adicionado
